@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#displays the content of the file /etc/passwd.
+IFS=:
+while read -r USERNAME PASSWD USRID GROUP_ID USRINFO DIR LOGSHELL; do
+    echo "The user $USERNAME is part of the $GROUP_ID gang, lives in $DIR and rides $LOGSHELL. $USRID's place is protected by the passcode $PASSWD, more info about the user here: $USRINFO"
+done < /etc/passwd
