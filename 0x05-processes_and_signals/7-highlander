@@ -4,6 +4,5 @@
 trap 'echo "I am invincible!!!"' SIGINT
 while true ;do
     echo 'To infinity and beyond'
-    sleep 1
-    ((i++))
+    sleep 2
 done
