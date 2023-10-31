@@ -23,13 +23,11 @@ else
    	    if ps -p "$pid" > /dev/null; then
 	        kill "$pid"
 	        rm /var/run/my_process.pid
-	        echo "Stopped => $pid"
 	    fi
 	fi
         echo "manage_my_process restarted"
 	./manage_my_process&
 	echo "$!" > /var/run/my_process.pid
 	pid=$(cat /var/run/my_process.pid)
-	echo "Started => $pid"
     fi
 fi
