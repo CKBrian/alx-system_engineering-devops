@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# confgures a machine to connect to a remote server without a password
+ssh -i ~/.ssh/school -A ubuntu@54.197.44.18
