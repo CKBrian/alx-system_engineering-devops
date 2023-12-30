@@ -10,8 +10,8 @@ file {'~/.ssh/ssh_config':
   content => "
     Host dev
       HostName 54.197.44.18
-	  User "ubuntu"
-	  IdentityFile "~/.ssh/school"
+	  User ubuntu
+	  IdentityFile ~/.ssh/school
 	  PasswordAuthentication no
 	  ",
 }
