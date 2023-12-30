@@ -1,7 +1,7 @@
 # creates `.ssh` directory if not exists
-exec { '.ssh_directory' =>
-  command => '/usr/bin/mkdir -p ~/.ssh && cd ~/.ssh',
-}
+# exec { '.ssh_directory' =>
+#  command => '/usr/bin/mkdir -p ~/.ssh && cd ~/.ssh',
+# }
 
 # configures SSH client to use the private key ~/.ssh/school and refuse to authenticate using a password
 {'~/.ssh/ssh_config':
