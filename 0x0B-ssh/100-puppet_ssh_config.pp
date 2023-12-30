@@ -5,7 +5,7 @@ exec { 'ssh_directory' =>
 
 # configures SSH client to use the private key ~/.ssh/school and refuse to authenticate using a password
 file {'~/.ssh/ssh_config':
-  ensure  => 'file',
+  ensure  => 'present',
   mode    => '0600',
   content => "
     Host dev
