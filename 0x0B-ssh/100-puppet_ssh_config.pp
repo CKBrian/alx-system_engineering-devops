@@ -6,11 +6,11 @@
 file {'~/.ssh/ssh_config':
   ensure  => 'present',
   mode    => '0600',
-  content => '
+  content => @("SSH_CONFIG")
     Host dev
       HostName 54.197.44.18
-	  User ubuntu
-	  IdentityFile ~/.ssh/school
-	  PasswordAuthentication no
-	  ',
+      User ubuntu
+      IdentityFile '~/.ssh/school'
+      PasswordAuthentication no
+    SSH_CONFIG
 }
