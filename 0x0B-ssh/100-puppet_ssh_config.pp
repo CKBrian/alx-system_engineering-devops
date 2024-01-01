@@ -14,11 +14,11 @@
 #      PasswordAuthentication no
 #    SSH_CONFIG
 file_line {'turn off password auth':
-  path => '~/.ssh/ssh_config',
+  path => '/etc/ssh/ssh_config',
   line => '  PasswordAuthentication no',
 }
 
 file_line {'Identity file':
-  path => '~/.ssh/ssh_config',
+  path => '/etc/ssh/ssh_config',
   line => '  IdentityFile ~/.ssh/school',
 }
