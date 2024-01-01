@@ -13,7 +13,6 @@
 #      IdentityFile '~/.ssh/school'
 #      PasswordAuthentication no
 #    SSH_CONFIG
-#}
 file_line {'turn off password auth':
   path => '~/.ssh/ssh_config',
   line => '  PasswordAuthentication no',
