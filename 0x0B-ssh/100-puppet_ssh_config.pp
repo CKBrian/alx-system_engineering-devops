@@ -1,4 +1,3 @@
-
 # configures SSH client to refuse password authentication
 file_line {'turn off password auth':
   path => '/etc/ssh/ssh_config',
