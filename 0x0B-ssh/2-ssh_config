@@ -1,6 +1,6 @@
 # configures a machine to connect to a remote server without a password
 Host dev
-	HostName 54.197.44.18
+	HostName 100.26.173.252
 	User "ubuntu"
 	IdentityFile ~/.ssh/school
 	PasswordAuthentication no
