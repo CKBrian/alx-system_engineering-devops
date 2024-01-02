@@ -8,5 +8,5 @@ else
 	FILE_PATH=$1
 	USERNAME=$3
 	IP=$2
-    scp -i $SSH_KEY $FILE_PATH $USERNAME@$IP
+    scp -i $SSH_KEY -o StrictHostKeyChecking=no $FILE_PATH $USERNAME@$IP:~/
 fi
