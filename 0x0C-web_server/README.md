@@ -13,7 +13,7 @@ A web server stores website component files and web server software. It receives
 ## Usage
 
 examples
-```bash
+```sh
  sylvain@ubuntu$ ./0-transfer_file
 Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY
 sylvain@ubuntu$
@@ -29,5 +29,11 @@ some_page.html
 sylvain@ubuntu$
 ```
 
-## Licences
+## Contribution Guidelines
+
+This project is an individual assignment and not open for external contributions. It is for educational purposes only, and all work should be completed individually as part of the assignment requirements.
+
+## Licence
+
+This project is for educational purposes and does not require a specific license. It is intended for use as part of an assignment and learning activity and is not open for external distribution or contributions.
 
