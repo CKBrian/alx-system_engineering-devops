@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# install NGINX server
+sudo apt-get update -y
+sudo apt-get install nginx -y
+
+# configure Nginx to be listening on port 80
+sudo ufw allow 'Nginx HTTP'
+
+# configure Nginx server to return a page that contains the string Hello World!
+echo "Hello World!" | sudo tee /var/www/html/index*
+
+# configures redirect_me
+sudo sed -i 's/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
+# create a custon 404 not found page
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
+sudo sed -i '/rewrite/a error_page 404 /custom_404.html {\n location = \/custom_404.html { root /usr/share/nginx/html;}}' /etc/nginx/sites-available/default
+
+# sudo nginx -t
+# reload Nginx configs
+sudo service nginx restart
