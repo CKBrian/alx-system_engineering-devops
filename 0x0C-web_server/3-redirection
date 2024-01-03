@@ -1,18 +1,32 @@
 #!/usr/bin/env bash
-
-# Install NGINX server
+# install NGINX server
 sudo apt-get update -y
 sudo apt-get install nginx -y
 
-# Configure Nginx to be listening on port 80
+# configure Nginx to be listening on port 80
 sudo ufw allow 'Nginx HTTP'
 
-# Configure Nginx server to return a page that contains the string Hello World!
-echo "Hello World!" | sudo tee /var/www/html/index.html
+# configure Nginx server to return a page that contains the string Hello World!
+echo "Hello World!" | sudo tee /var/www/html/index*
 
-# Configure redirect_me
-sudo sed -i '/location \/redirect_me {/a \\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;' /etc/nginx/sites-available/default
+# configures redirect_me
+server = "
+server {
+       listen 80;
+       listen [::]:80;
 
-# Reload Nginx configs
+       server_name example.com;
+
+       root /var/www/html;
+	   index index.html index.htm index.nginx-debian.html;
+
+       location /redirect_me {
+                return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+       }
+}
+"
+echo "$server" | sudo tee /etc/nginx/sites-available/default
+# sudo sed -i 's/location \/redirect_me {/$server' /etc/nginx/sites-available/default
+
+# reload Nginx configs
 sudo service nginx restart
-
