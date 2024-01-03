@@ -6,7 +6,11 @@ sudo apt-get install nginx -y
 # configure Nginx to be listening on port 80
 sudo ufw allow 'Nginx HTTP'
 
+# configure Nginx server to return a page that contains the string Hello World!
+echo "Hello World!" | sudo tee /var/www/html/index*
+
 # configures redirect_me
-sudo sed -i '/80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+sudo sed -i 's/80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
 # reload Nginx configs
 sudo service nginx restart
