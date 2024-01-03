@@ -7,7 +7,6 @@ sudo apt-get install nginx -y
 sudo ufw allow 'Nginx HTTP'
 
 # configures redirect_me
-sudo sed -i ' 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent' /etc/nginx/sites-available/default
-
+sudo sed -i '/80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
 # reload Nginx configs
 sudo service nginx restart
