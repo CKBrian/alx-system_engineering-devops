@@ -14,7 +14,8 @@ sudo sed -i '/listen 80 default_server;/ a\\n\trewrite ^/redirect_me https://www
 # create a custon 404 not found page
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
 
-sudo sed -i '/listen 80 default_server;/a\\n\terror_page 404 /custom_404.html {\n\t\tlocation = \/custom_404.html {\n\t\t\troot \/usr\/share\/nginx\/html;\n\t\t}\n\t}' /etc/nginx/sites-available/default
+sudo sed -i '/listen 80 default_server;/a\\n\terror_page 404 /custom_404.html ' /etc/nginx/sites-available/default
+# {\n\t\tlocation = \/custom_404.html {\n\t\t\troot \/usr\/share\/nginx\/html;\n\t\t}\n\t}'y /etc/nginx/sites-available/default
 
 # sudo nginx -t
 # reload Nginx configs
