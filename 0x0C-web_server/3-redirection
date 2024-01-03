@@ -1,16 +1,8 @@
 #!/usr/bin/env bash
 # install NGINX server
-sudo apt-get update -y
-sudo apt-get install nginx -y
-
-# configure Nginx to be listening on port 80
-sudo ufw allow 'Nginx HTTP'
-
-# configure Nginx server to return a page that contains the string Hello World!
-echo "Hello World!" | sudo tee /var/www/html/index*
-
+./1-install_nginx_web_server
 # configures redirect_me
-server = "
+REDIRECT_ME = "
 server {
        listen 80;
        listen [::]:80;
@@ -25,8 +17,8 @@ server {
        }
 }
 "
-echo "$server" | sudo tee /etc/nginx/sites-available/default
-# sudo sed -i 's/location \/redirect_me {/$server' /etc/nginx/sites-available/default
+echo "$REDIRECT_ME" | sudo tee /etc/nginx/sites-available/redirect_me
+# sudo sed -i 's/location \/redirect_me {/$server' /etc/nginx/sites-available/redirect_me
 
 # reload Nginx configs
 sudo service nginx restart
