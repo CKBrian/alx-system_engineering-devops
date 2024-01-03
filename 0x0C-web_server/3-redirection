@@ -2,23 +2,6 @@
 # install NGINX server
 ./1-install_nginx_web_server
 # configures redirect_me
-REDIRECT_ME="
-server {
-       listen 80;
-       listen [::]:80;
-
-       server_name example.com;
-
-       root /var/www/html;
-	   index index.html index.htm index.nginx-debian.html;
-
-       location /redirect_me {
-                return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-       }
-}
-"
-echo "$REDIRECT_ME" | sudo tee /etc/nginx/sites-available/redirect_me
-# sudo sed -i 's/location \/redirect_me {/$server' /etc/nginx/sites-available/redirect_me
-sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled
+sudo sed -i 's/default_server/ a rewrite /redirect_me ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent' /etc/nginx/sites-available/default
 # reload Nginx configs
 sudo service nginx restart
