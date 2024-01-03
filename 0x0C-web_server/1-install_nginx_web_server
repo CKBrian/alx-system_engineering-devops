@@ -4,9 +4,9 @@ sudo apt update
 sudo apt install nginx -y
 
 # configure Nginx to be listening on port 80
-sudo ufw allow 'HTTP'
+sudo ufw allow 'Nginx HTTP'
 
 # configure Nginx server to return a page that contains the string Hello World!
-sudo echo "Hello World!" >  /var/www/html/index.html
+echo "Hello World!" > sudo tee /var/www/html/index*
 # reload Nginx configs
-sudo service reload Nginx
+sudo service Nginx reload
