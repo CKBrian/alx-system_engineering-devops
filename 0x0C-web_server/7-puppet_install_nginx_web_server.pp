@@ -44,7 +44,7 @@ file { '/etc/nginx/sites-available/default':
       }
     }
   ",
-  notify => Service['nginx'],
+  notify  => Service['nginx'],
 }
 
 # Create a Hello World page
