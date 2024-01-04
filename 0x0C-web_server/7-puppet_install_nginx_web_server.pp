@@ -19,14 +19,44 @@ exec {'Nginx_port_config':
 # configure Nginx server to return a page that contains the string Hello World!
 file {'/var/www/html/index.html':
   ensure  => 'file',
-  content => "Hello World!",
+  content => 'Hello World!',
 }
 
 # configures redirect_me
-exec {'permanent_redirect':
-  command => "sudo sed -i '/listen 80 default_server;/ a\\n\t rewrite ^/ /var/www/html/index.html permanent;\n' /etc/nginx/sites-available/default,"
+file {'/etc/nginx/sites-available/default':
+  ensure  => file,
+  content => "
+	server {
+			listen 80 default_server;
+			listen [::]:80 default_server;
+
+			rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+			error_page 404 /custom_404.html;
+
+			root /var/www/html;
+
+			# Add index.php to the list if you are using PHP
+			index index.html index.htm index.nginx-debian.html;
+
+			server_name _;
+
+			location / {
+					# First attempt to serve request as file, then
+					# as directory, then fall back to displaying a 404.
+					try_files \$uri \$uri/ =404;
+			}
+
+	}
+	  ",
   notify  => Service['nginx'],
+
 }
+#exec {'permanent_redirect':
+#  command => "
+#    sudo sed -i '/listen 80 default_server;/ a\\n\t rewrite ^/ /var/www/html/index.html permanent;\n' /etc/nginx/sites-available/default
+#	",
+#  notify  => Service['nginx'],
+#}
 # create a custon 404 not found page
 #file {'/var/www/html/custom_404.html':
 #  ensure  => 'file',
