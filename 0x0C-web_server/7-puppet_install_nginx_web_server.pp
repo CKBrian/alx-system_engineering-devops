@@ -22,6 +22,11 @@ file {'/var/www/html/index.html':
   content => 'Hello World!',
 }
 
+# create a custon 404 not found page
+file {'/var/www/html/custom_404.html':
+  ensure  => 'file',
+  content => "Ceci n'est pas une page",
+}
 # configures redirect_me
 file {'/etc/nginx/sites-available/default':
   ensure  => file,
