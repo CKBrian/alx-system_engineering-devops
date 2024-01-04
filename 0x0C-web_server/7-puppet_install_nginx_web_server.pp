@@ -3,7 +3,7 @@
 # Update packages
 exec { 'update':
   command => 'apt update -y',
-  path    => '/usr/bin/apt',
+  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
 }
 
 # Install NGINX and ensure it's running
@@ -19,7 +19,7 @@ service { 'nginx':
 # Configure Nginx to listen on port 80
 exec { 'Nginx_port_config':
   command => 'ufw allow "Nginx HTTP"',
-  path    => '/usr/bin/ufw',
+  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
 }
 
 # Configure NGINX server
