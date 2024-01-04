@@ -29,7 +29,7 @@ file {'/var/www/html/custom_404.html':
 }
 # configures redirect_me
 file {'/etc/nginx/sites-available/default':
-  ensure  => file,
+  ensure  => 'file',
   content => "
 	server {
 			listen 80 default_server;
