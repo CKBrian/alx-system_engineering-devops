@@ -61,3 +61,8 @@ file { '/var/www/html/custom_404.html':
   content => "Ceci n'est pas une page",
 }
 
+-> file_line { 'http_header':
+  path  => '/etc/nginx/nginx.conf',
+  match => 'http {',
+  line  => "http {\n\tadd_header X-Served-By \"${hostname}\";",
+}
