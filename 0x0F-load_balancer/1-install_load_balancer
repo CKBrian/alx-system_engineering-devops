@@ -9,16 +9,14 @@ sudo cp -a /etc/haproxy/haproxy.cfg{,.orig}
 # Configure HAproxy so that it send traffic to web-01 and web-02
 # Distribute requests using a roundrobin algorithm
 config="
-frontend http
+frontend web_http
 	bind *:80
-	mode http
 	default_backend web_servers
 
 backend web_servers
 	balance roundrobin
 	server web-01 100.26.173.252:80 check
-	server web-02 54.160.114.174:80 check
-"
+	server web-02 54.160.114.174:80 check"
 echo "$config" | sudo tee -a /etc/haproxy/haproxy.cfg >> /dev/null
 
 # restart the HAproxy
