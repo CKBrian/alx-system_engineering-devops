@@ -1,5 +1,3 @@
-# NGINX server
-
 # Update packages
 exec { 'update':
   command => 'apt update -y',
@@ -16,7 +14,7 @@ service { 'nginx':
   enable => true,
 }
 
-# Configure Nginx to listen on port 80
+# Configure NGINX to listen on port 80
 exec { 'Nginx_port_config':
   command => 'ufw allow "Nginx HTTP"',
   path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
@@ -42,6 +40,8 @@ file { '/etc/nginx/sites-available/default':
       location / {
         try_files \$uri \$uri/ =404;
       }
+
+      add_header X-Served-By \"${::hostname}\";
     }
   ",
   notify  => Service['nginx'],
@@ -59,8 +59,16 @@ file { '/var/www/html/custom_404.html':
   content => "Ceci n'est pas une page",
 }
 
+# Add Custom HTTP Response Header
 file_line { 'http_header':
   path  => '/etc/nginx/sites-available/default',
   match => 'server_name _;',
   line  => "server_name _;\n\tadd_header X-Served-By \"${::hostname}\";",
 }
+
+# Reload NGINX to apply the changes
+exec { 'nginx_reload':
+  command => 'service nginx reload',
+  require => File['/etc/nginx/sites-available/default'],
+}
+
