@@ -14,14 +14,8 @@ service { 'nginx':
   enable => true,
 }
 # Add Custom HTTP Response Header
-file_line { 'http_header':
-  path  => '/etc/nginx/nginx.conf',
-  match => 'http {;',
-  line  => "http {\n\tadd_header X-Served-By $HOSTNAME;",
-}
-
 # Reload NGINX to apply the changes
 exec { 'nginx_reload':
-  command => 'service nginx restart; sudo sed -i "/server_name _;/a\\\n\tadd_header X-Served-By HOST_NAME;" /etc/nginx/sites-available/default;',
+  command => 'sudo sed -i "/server_name _;/a\\\n\tadd_header X-Served-By HOST_NAME;" /etc/nginx/sites-available/default; service nginx restart;',
   require => File['/etc/nginx/sites-available/default'],
 }
