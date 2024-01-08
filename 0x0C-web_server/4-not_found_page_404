@@ -10,15 +10,15 @@ sudo ufw allow 'Nginx HTTP'
 echo "Hello World!" | sudo tee /var/www/html/index* > /dev/null
 
 # configures redirect_me
-# sudo sed -i '/listen 80 default_server;/ a\\n\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n' /etc/nginx/sites-available/default
-sudo sed -i '/listen 80 default_server;/ a\\n\t rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n' /etc/nginx/sites-available/default
-# create a custon 404 not found page
+sudo sed -i '/listen 80 default_server;/ a\\n\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
+# create a custom 404 not found html file
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
 
-# sudo sed -i '/listen 80 default_server;/a\\n\terror_page 404 /custom_404.html ' /etc/nginx/sites-available/default
-sudo sed -i "s/server {/server {\n    error_page 404 \/custom_404.html;/g" /etc/nginx/sites-available/default
-# {\n\t\tlocation = \/custom_404.html {\n\t\t\troot \/usr\/share\/nginx\/html;\n\t\t}\n\t}'y /etc/nginx/sites-available/default
+# Adjusts /etc/nginx/sites-available/default to create an error page to handle 404 not found error
+sudo sed -i '/listen 80 default_server;/ a\\n\terror_page 404 /custom_404.html;\n' /etc/nginx/sites-available/default
 
-# sudo nginx -t
-# reload Nginx configs
+sudo nginx -t # verifies the syntax of the config file
+
+# reloads Nginx configs
 sudo service nginx restart
