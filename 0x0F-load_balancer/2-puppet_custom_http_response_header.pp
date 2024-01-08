@@ -16,6 +16,6 @@ service { 'nginx':
 # Add Custom HTTP Response Header
 # Reload NGINX to apply the changes
 exec { 'nginx_reload':
-  command => 'sudo sed -i "/server_name _;/a\\\n\tadd_header X-Served-By HOST_NAME;" /etc/nginx/sites-available/default; service nginx restart',
+  command => 'sudo sed -i "/server_name _;/a\\\n\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default; service nginx restart',
   require => File['/etc/nginx/sites-available/default'],
 }
