@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Installs and configures HA Proxy
-sudo apt update
-sudo apt install haproxy
+sudo apt update -y
+sudo apt install haproxy -y
 
 # configure HA Proxy
 sudo cp -a /etc/haproxy/haproxy.cfg{,.orig}
