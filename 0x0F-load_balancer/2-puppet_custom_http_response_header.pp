@@ -18,5 +18,5 @@ service { 'nginx':
 exec { 'nginx_reload':
   command => 'sudo sed -i "/server_name _;/a\\\n\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default;
   service nginx restart',
-  require => File['/etc/nginx/sites-available/default'],
+  provider => shell,
 }
