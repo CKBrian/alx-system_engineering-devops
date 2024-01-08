@@ -60,7 +60,7 @@ file { '/var/www/html/custom_404.html':
 }
 
 -> file_line { 'http_header':
-  path  => '/etc/nginx/nginx.conf',
-  match => 'http {',
-  line  => "http {\n\tadd_header X-Served-By \"${hostname}\";",
+  path  => '/etc/nginx/sites-available/default',
+  match => 'server_name _;',
+  line  => "server_name _;\n\tadd_header X-Served-By \"${hostname}\";",
 }
