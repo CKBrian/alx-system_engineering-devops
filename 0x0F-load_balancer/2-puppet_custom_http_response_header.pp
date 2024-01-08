@@ -71,4 +71,3 @@ exec { 'nginx_reload':
   command => 'service nginx reload',
   require => File['/etc/nginx/sites-available/default'],
 }
-
