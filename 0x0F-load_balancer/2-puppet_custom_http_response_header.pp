@@ -22,6 +22,6 @@ file_line { 'http_header':
 
 # Reload NGINX to apply the changes
 exec { 'nginx_reload':
-  command => 'service nginx restart',
+  command => 'service nginx restart; sudo sed -i "/server_name _;/a\\\n\tadd_header X-Served-By HOST_NAME;" /etc/nginx/sites-available/default;',
   require => File['/etc/nginx/sites-available/default'],
 }
