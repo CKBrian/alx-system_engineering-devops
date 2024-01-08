@@ -18,10 +18,11 @@ echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/n
 # Adjusts /etc/nginx/sites-available/default to create an error page to handle 404 not found error
 sudo sed -i '/listen 80 default_server;/ a\\n\terror_page 404 /custom_404.html;\n' /etc/nginx/sites-available/default
 
-#sudo nginx -t # verifies the syntax of the config file
-
 # Configure Nginx so that its HTTP response contains a custom header with the name of the custom HTTP header as X-Served-By then server name
-sudo sed -i "s/listen 80 default_server;/a\\n\tadd_header X-Served-By \"$SERVER\";/" /etc/nginx/sites-available/default
+sudo sed -i "/server_name _;/a\\\n\tadd_header X-Served-By HOST_NAME;" /etc/nginx/sites-available/default
+
+# verifies the syntax of the config file
+sudo nginx -t
 
 # reloads Nginx configs
 sudo service nginx restart
