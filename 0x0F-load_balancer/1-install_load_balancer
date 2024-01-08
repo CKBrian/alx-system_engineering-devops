@@ -12,9 +12,9 @@ config="
 frontend http
 	bind *:80
 	mode http
-	default_backend web_backend
+	default_backend web_servers
 
-backend web_backend
+backend web_servers
 	balance roundrobin
 	server web-01 100.26.173.252:80 check
 	server web-02 54.160.114.174:80 check
