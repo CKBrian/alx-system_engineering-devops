@@ -1,9 +1,27 @@
 #!/usr/bin/env bash
+# install NGINX server
+sudo apt-get update -y
+sudo apt-get install nginx -y
+
+# configure Nginx to be listening on port 80
+sudo ufw allow 'Nginx HTTP'
+
+# configure Nginx server to return a page that contains the string Hello World!
+echo "Hello World!" | sudo tee /var/www/html/index* > /dev/null
+
+# configures redirect_me
+sudo sed -i '/listen 80 default_server;/ a\\n\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
+# create a custom 404 not found html file
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
+
+# Adjusts /etc/nginx/sites-available/default to create an error page to handle 404 not found error
+sudo sed -i '/listen 80 default_server;/ a\\n\terror_page 404 /custom_404.html;\n' /etc/nginx/sites-available/default
+
+#sudo nginx -t # verifies the syntax of the config file
+
 # Configure Nginx so that its HTTP response contains a custom header with the name of the custom HTTP header as X-Served-By then server name
-sudo sed -i '/listen 80 default_server;/a\\n\tadd_header X-Served-By web-02;' /etc/nginx/sites-available/default
+sudo sed -i '/listen 80 default_server;/a\\n\tadd_header X-Served-By $HOSTNAME;' /etc/nginx/sites-available/default
 
-# verify nginx config file syntax
-sudo nginx -t
-
-# reload Nginx configs
+# reloads Nginx configs
 sudo service nginx restart
