@@ -22,6 +22,6 @@ file_line { 'http_header':
 
 # Reload NGINX to apply the changes
 exec { 'nginx_reload':
-  command => 'service nginx reload',
+  command => 'service nginx restart',
   require => File['/etc/nginx/sites-available/default'],
 }
