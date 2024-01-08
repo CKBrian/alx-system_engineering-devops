@@ -21,8 +21,7 @@ sudo sed -i '/listen 80 default_server;/ a\\n\terror_page 404 /custom_404.html;\
 #sudo nginx -t # verifies the syntax of the config file
 
 # Configure Nginx so that its HTTP response contains a custom header with the name of the custom HTTP header as X-Served-By then server name
-#SERVER=$1
-sudo sed -i "s/listen 80 default_server;/a\\n\tadd_header X-Served-By $HOSTNAME;/" /etc/nginx/sites-available/default
+sudo sed -i "/listen 80 default_server;/a\\n\tadd_header X-Served-By $SERVER;" /etc/nginx/sites-available/default
 
 # reloads Nginx configs
 sudo service nginx restart
