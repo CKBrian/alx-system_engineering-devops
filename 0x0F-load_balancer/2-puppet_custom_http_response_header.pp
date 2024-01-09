@@ -16,7 +16,14 @@ service { 'nginx':
 
 # Add Custom HTTP Response Header and Reload NGINX to apply the changes
 exec { 'nginx_reload':
-  command  => '/bin/bash -c "apt-get -y install nginx; sed -i \'/server_name _;/a\\\n\tadd_header X-Served-By $HOSTNAME;/\' /etc/nginx/sites-available/default; service nginx restart"',
+  command  => '/bin/bash -c "apt-get -y install nginx; \
+                sed -i \'/server_name _;/a\\\n\tadd_header X-Served-By $HOSTNAME;/\' \
+                /etc/nginx/sites-available/default"',
+  provider => shell,
+}
+
+exec { 'restart service':
+  command  => 'sudo service nginx restart',
   provider => shell,
 }
 
