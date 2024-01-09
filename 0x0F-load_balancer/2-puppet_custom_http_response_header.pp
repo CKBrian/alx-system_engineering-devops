@@ -11,9 +11,9 @@ exec { 'update':
 -> file_line { 'header line':
   ensure => present,
   path   => '/etc/nginx/sites-available/default',
-  line   => "	location / {
-  add_header X-Served-By ${hostname};",
-  match  => '^\tlocation / {',
+  line   => "server_name _;
+  \tadd_header X-Served-By ${hostname};",
+  match  => 'server_name _;',
 }
 # reloads Nginx configs
 -> exec { 'restart service':
