@@ -1,0 +1,9 @@
+frontend web_http
+        bind *:80
+        bind *:443 ssl crt /etc/haproxy/certs/www.brianchumo.tech_ssl.pem
+        default_backend web_backend
+
+backend web_backend
+        balance roundrobin
+        server 437044-web-01 100.26.173.252:80 check
+        server 437044-web-02 54.160.114.174:80 check
