@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # fix curl: (7) Failed to connect to 0 port 80: Connection refused error
 sed -i '/server {/server {\n\t\tlisten 80 default_server;' /etc/nginx/sites-available/default
+sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
 
 # reload nginx
 sudo service nginx restart;
