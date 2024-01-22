@@ -81,6 +81,5 @@ COMMIT
 
 # forward traffick from port 8080/TCP to port 80/TCP
 -A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
-# -A PREROUTING -p tcp --dport 8080 -j DNAT --to-destination 127.0.0.1:80
-# -A PREROUTING -p tcp -i eth0 --dport 8080 -j DNAT \ --to-destination 127.0.0.1:80
+
 COMMIT
