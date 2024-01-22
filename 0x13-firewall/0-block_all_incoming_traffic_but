@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+# configures a firewall to blocks all incoming traffic, except on ports 80(HTTP), 443(HTTPS) and 22(SSh)
 sudo apt update -y
 sudo apt install ufw -y
 sudo ufw allow 80/tcp
