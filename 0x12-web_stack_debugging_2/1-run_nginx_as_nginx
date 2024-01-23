@@ -3,5 +3,5 @@
 sed -i '/#user www-data/user nginx/' /etc/nginx/nginx.conf
 chmod 644 /etc/nginx/nginx.conf
 # configures nginx to listen on port 8080
-sed -i '/listen 80/listen 8080/' /etc/nginx/sites-available/default
+sed -i '/80/8080/' /etc/nginx/sites-available/default
 sudo -u nginx service nginx restart
