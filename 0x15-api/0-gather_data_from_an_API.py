@@ -4,14 +4,13 @@ Defines a module that uses REST API, for a given employee ID & returns
 information about his/her TODO list progress.
 """
 
+from urllib.request import urlopen
 import json
 import requests
 import sys
-from urllib.request import urlopen
 
 
 if __name__ == "__main__":
-    """Prints employee completed tasks"""
     E_id = sys.argv[1]
     # extracts employee name
     url = "https://jsonplaceholder.typicode.com/users?id={}".format(E_id)
