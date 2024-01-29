@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-''' uses REST API, to send get request  and returns TODO list progress. '''
+''' uses REST API, to send get request of TODO list progress. '''
+import json
 import requests
 import sys
+from urllib.request import urlopen
 
 
 if __name__ == "__main__":
-    import json
-    from urllib.request import urlopen
     E_id = sys.argv[1]
     # extracts employee name
     url = "https://jsonplaceholder.typicode.com/users?id={}".format(E_id)
@@ -21,6 +21,6 @@ if __name__ == "__main__":
     titles = [item.get('title') for item in emp_data if item.get('completed')]
     tasks = len(emp_data)
     c_tasks = len(titles)
-    print("Employee {} is done with tasks({}/{})".format(name, c_tasks, tasks))
+    print("Employee {} is done with tasks({}/{}):".format(name, c_tasks, tasks))
     for title in titles:
         print("\t {}".format(title))
