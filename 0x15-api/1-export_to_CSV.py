@@ -31,4 +31,4 @@ if __name__ == "__main__":
     with open(filename, mode='w') as f:
         writer = csv.writer(f)
         for item in titles:
-            writer.writerow(item.values())
+            writer.writerow(map(str, item.values()))
