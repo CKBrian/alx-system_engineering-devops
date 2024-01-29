@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-"""Defines a module that uses REST API, for a given employee ID & returns
-information about his/her TODO list progress."""
+"""
+Defines a module that uses REST API, for a given employee ID & returns
+information about his/her TODO list progress.
+"""
 import json
 import requests
 import sys
