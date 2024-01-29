@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''uses REST API, for a given employee ID & returns TODO list progress.'''
+''' uses REST API, to send get request  and returns TODO list progress. '''
 import json
 import requests
 import sys
