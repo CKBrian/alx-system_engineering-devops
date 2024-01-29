@@ -20,7 +20,7 @@ if __name__ == "__main__":
     # list of completed titles
     titles = [item.get('title') for item in emp_data if item.get('completed')]
     tasks = len(emp_data)
-    c_tasks = len(titles)
-    print("Employee {} is done with tasks({}/{}):".format(name, c_tasks, tasks))
+    cTasks = len(titles)
+    print("Employee {} is done with tasks({}/{}):".format(name, cTasks, tasks))
     for title in titles:
         print("\t {}".format(title))
