@@ -1,13 +1,9 @@
 #!/usr/bin/python3
-"""
-Defines a module that uses REST API, for a given employee ID & returns
-information about his/her TODO list progress.
-"""
-
-from urllib.request import urlopen
+'''uses REST API, for a given employee ID & returns TODO list progress.'''
 import json
 import requests
 import sys
+from urllib.request import urlopen
 
 
 if __name__ == "__main__":
