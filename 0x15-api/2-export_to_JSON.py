@@ -25,8 +25,8 @@ if __name__ == "__main__":
     #                  TASK_COMPLETED_STATUS, "username": "USERNAME"},{... ]}
     titles = [{"task": item.get('title'), "completed": item.get('completed'),
                "username": name} for item in emp_data]
-    title_dict = dict(E_id: titles)
+    title_dict = {E_id: titles}
     print(title_dict)
     # write to json
     with open(filename, mode='w', encoding="utf-8") as f:
-        json.dump(title_dict, filename)
+        json.dump(title_dict, f)
