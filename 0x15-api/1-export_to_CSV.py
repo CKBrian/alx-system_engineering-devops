@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 ''' Records all tasks that are owned by an employee '''
-import csv
 import json
 import requests
 import sys
@@ -23,12 +22,10 @@ if __name__ == "__main__":
     emp_data = json.loads(data)
 
     # Format must be: "USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"
-    titles = [{'userId': str(item.get('userId')), 'username': str(name),
-               'completed': str(item.get('completed')),
-               'title': str(item.get('title'))} for item in emp_data]
+    titles = '\n'.join('"{}","{}","{}","{}"'.
+                       format(item.get('userId'), name, item.get('completed'),
+                              item.get('title')) for item in emp_data)
 
     # write to csv
     with open(filename, mode='w') as f:
-        writer = csv.writer(f)
-        for item in titles:
-            writer.writerow(map(str, item.values()))
+        f.write(titles)
