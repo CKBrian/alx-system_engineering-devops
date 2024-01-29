@@ -31,7 +31,6 @@ if __name__ == "__main__":
     res = requests.get(url)
     emp_ids = [item.get('id') for item in res.json()]
     title_dict = {Id: get_list(Id) for Id in emp_ids}
-    print(title_dict)
 
     # write to json
     filename = "todo_all_employees.json"
