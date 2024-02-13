@@ -38,4 +38,6 @@ def recurse(subreddit, word_list, hot_list=[], new_page=""):
 
 def count_words(subreddit, word_list):
     """Returns the count of words in hot titles in subreddits posts"""
-    print(recurse(subreddit, word_list))
+    count = recurse(subreddit, word_list)
+    if count:
+        print(count)
