@@ -14,8 +14,4 @@ def top_ten(subreddit):
         posts = top_posts[:10]
         return '\n'.join(post for post in posts)
     else:
-        return 0
-
-
-if __name__ == "__main__":
-    print(top_ten('programming'))
+        return None
