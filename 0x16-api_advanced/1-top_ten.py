@@ -14,4 +14,4 @@ def top_ten(subreddit):
         posts = top_posts[:10]
         print('\n'.join(post for post in posts))
     else:
-        Print(None)
+        print(None)
