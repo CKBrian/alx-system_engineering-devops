@@ -6,10 +6,9 @@ import requests
 def number_of_subscribers(subreddit):
     """returns the number of subscribers in the Reddit API"""
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    if not subreddit or not isinstance(subreddit, str):
+    if subreddit is None or not isinstance(subreddit, str):
         return 0
-    resp = requests.get(url, headers={'User-Agent': 'CKBrian7'},
-                        allow_redirects=False)
+    resp = requests.get(url, headers={'User-Agent': 'CKBrian7'})
     if resp.status_code == 200:
         return resp.json().get('data').get('subscribers')
     else:
