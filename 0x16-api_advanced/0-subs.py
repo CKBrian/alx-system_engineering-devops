@@ -4,13 +4,14 @@ import requests
 
 
 def number_of_subscribers(subreddit):
-    '''returns number of subscribers or 0 if subreddit is invalid'''
+    """returns the number of subscribers in the Reddit API"""
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     if subreddit is None or not isinstance(subreddit, str):
         return 0
-    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-    res = requests.get(url, headers={
-                       'User-Agent': 'Directory0x16-api_advanced'}).json()
-    count = 0
-    if 'error' not in res.keys():
-        count = res.get('data').get('subscribers')
-    return count
+    resp = requests.get(url, headers={'User-Agent': 'CKBrian7'})
+    if 'error' in resp.json().keys():
+        return 0
+    if resp.status_code == 200:
+        return resp.json().get('data').get('subscribers')
+    else:
+        return 0
