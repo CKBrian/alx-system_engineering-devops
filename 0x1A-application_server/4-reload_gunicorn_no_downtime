@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 # reloads gunicorn without any downtime
 #shellcheck disable=SC2009
-# ps aux | grep gunicorn | awk '{ print $2 }' | xargs kill -HUP
 
-PIDS=$(pgrep -f 'gunicorn')
-
-for pid in $PIDS; do
-	kill -s TERM "$pid"
-	wait "$pid"
-done
+sudo service gunicorn status |  sed -n 's/.*Main PID: \(.*\)$/\1/g p' | cut -f1 -d' ' | xargs kill -HUP
