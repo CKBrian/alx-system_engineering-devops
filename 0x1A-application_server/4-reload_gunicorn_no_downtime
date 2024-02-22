@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # reloads gunicorn without any downtime
 #shellcheck disable=SC2009
 
