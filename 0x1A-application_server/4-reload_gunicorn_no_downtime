@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
+
 # reloads gunicorn without any downtime
 #shellcheck disable=SC2009
 
-ps aux | grep gunicorn | awk '{ print $2 }' | xargs kill -HUP
+# ps aux | grep gunicorn | awk '{ print $2 }' | xargs kill -HUP
+# pgrep -f 'gunicorn'
+
+PIDS=$(ps -aux | grep gunicorn | awk '/python/ {print $2}')
+
+for pid in $PIDS; do
+	kill -s TERM "$pid"
+	wait "$pid"
+done
