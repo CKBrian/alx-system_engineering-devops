@@ -1,9 +1,4 @@
 #!/usr/bin/bash
 # reloads gunicorn without any downtime
 
-PIDS=$(pgrep -f 'gunicorn')
-
-for pid in $PIDS;do
-	kill -s TERM "$pid"
-	wait "$pid"
-done
+pkill -HUP gunicorn
